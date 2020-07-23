@@ -1,0 +1,11 @@
+[package]
+name = "bdf_to_image"
+version = "0.1.0"
+authors = ["taotao54321 <taotao54321@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+anyhow = "1.0"
+bdf = "0.6"
+image = "0.23"
+itertools = "0.9"
