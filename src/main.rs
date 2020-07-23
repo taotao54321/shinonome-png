@@ -6,17 +6,20 @@ use image::{Rgba, RgbaImage};
 use itertools::iproduct;
 
 fn convert(font: bdf::Font) -> Result<RgbaImage> {
+    const MARGIN: u32 = 1;
+
     let (width, height) = {
         let glyph = font.glyphs().get(&' ').context("glyph ' ' not found")?;
         (glyph.width(), glyph.height())
     };
 
-    let mut img = RgbaImage::new(16 * width, 6 * height);
+    let mut img = RgbaImage::new(16 * (width + MARGIN), 6 * (height + MARGIN));
+
     for (i, code) in (0x20..=0x7E).enumerate() {
         let row = i / 16;
         let col = i % 16;
-        let y0 = height * row as u32;
-        let x0 = width * col as u32;
+        let y0 = (height + MARGIN) * row as u32;
+        let x0 = (width + MARGIN) * col as u32;
 
         let ch = char::from(code);
         let glyph = font
@@ -30,7 +33,11 @@ fn convert(font: bdf::Font) -> Result<RgbaImage> {
 
         for (dy, dx) in iproduct!(0..height, 0..width) {
             if glyph.get(dx, dy) {
-                img.put_pixel(x0 + dx, y0 + dy, Rgba([255, 255, 255, 255]));
+                img.put_pixel(
+                    MARGIN + x0 + dx,
+                    MARGIN + y0 + dy,
+                    Rgba([255, 255, 255, 255]),
+                );
             }
         }
     }
