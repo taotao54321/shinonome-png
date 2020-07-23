@@ -2,7 +2,7 @@
 
 ASCII tileset converted from Shinonome Font.
 
-![sample image](png/shnm8x16a.png)
+![sample image](screenshot.png)
 
 ## Build
 
