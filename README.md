@@ -2,15 +2,17 @@
 
 ASCII tileset converted from Shinonome Font.
 
-TODO: sample image
+![sample image](png/shnm8x16a.png)
 
 ## Build
 
-TODO
+```sh
+$ ./build.sh
+```
 
 ## License
 
-Public Domain.
+Public Domain
 
 ## Credits
 
